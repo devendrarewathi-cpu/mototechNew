@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Inter, Geist_Mono } from "next/font/google";
-import { brand, images } from "@/content/site";
+import { brand } from "@/content/site";
 import { I18nProvider } from "@/components/ui/I18nProvider";
 import "./globals.css";
 
@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     title: `${brand.name} — Performance Engineering`,
     description:
       "Precision-engineered motorcycle performance components, shaped by engineering discipline and motorsport.",
-    images: [{ url: images.heroLever.src, width: 1200, height: 630, alt: `${brand.name}` }],
   },
   twitter: { card: "summary_large_image" },
 };
