@@ -32,22 +32,21 @@ export const routes = {
 };
 
 export const nav = [
-  { label: "Company", href: routes.company },
-  { label: "Innovation", href: routes.innovation },
-  { label: "Products", href: routes.products },
-  { label: "Motorsport", href: routes.motorsport },
-  { label: "News", href: routes.news },
-  { label: "Contact", href: routes.contact },
-];
+  { key: "company", label: "Company", href: routes.company },
+  { key: "innovation", label: "Innovation", href: routes.innovation },
+  { key: "products", label: "Products", href: routes.products },
+  { key: "motorsport", label: "Motorsport", href: routes.motorsport },
+  { key: "news", label: "News", href: routes.news },
+  { key: "contact", label: "Contact", href: routes.contact },
+] as const;
 
-// TODO(content): confirm the supported languages.
+// The brief requires four languages. `code` matches a Locale in content/i18n.ts.
 export const languages = [
-  { code: "EN", label: "English" },
-  { code: "IT", label: "Italiano" },
-  { code: "DE", label: "Deutsch" },
-  { code: "FR", label: "Français" },
-  { code: "ES", label: "Español" },
-];
+  { code: "EN", locale: "en", label: "English" },
+  { code: "IT", locale: "it", label: "Italiano" },
+  { code: "ES", locale: "es", label: "Español" },
+  { code: "DE", locale: "de", label: "Deutsch" },
+] as const;
 
 export const principles = [
   { k: "Performance", v: "Judged where it matters: at the limit, under load." },

@@ -80,11 +80,11 @@ export function RoutePanel({
         }`}
       />
       <span className="relative">
-        <span className={`block font-display text-xl font-semibold uppercase tracking-[0.12em] sm:text-2xl ${solid ? "group-hover:text-white" : ""} transition-colors duration-500`}>
-          {label}
-        </span>
-        <span className={`mt-1 block text-[13px] ${solid ? "text-ink/70 group-hover:text-white/90" : "text-steel"} transition-colors duration-500`}>
+        <span className={`block text-[13px] ${solid ? "text-ink/70 group-hover:text-white/90" : "text-bone/80"} transition-colors duration-500`}>
           {question}
+        </span>
+        <span className={`mt-1 block font-display text-xl font-semibold uppercase tracking-[0.12em] sm:text-2xl ${solid ? "group-hover:text-white" : ""} transition-colors duration-500`}>
+          {label}
         </span>
       </span>
       <span

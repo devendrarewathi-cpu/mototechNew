@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow_Condensed, Inter, Geist_Mono } from "next/font/google";
 import { brand, images } from "@/content/site";
+import { I18nProvider } from "@/components/ui/I18nProvider";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
@@ -46,7 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`.reveal,.line-inner,.wipe,.wipe>.wipe-inner,.draw-x,.draw-y{opacity:1!important;transform:none!important;clip-path:none!important}`}</style>
         </noscript>
-        {children}
+        <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
   );

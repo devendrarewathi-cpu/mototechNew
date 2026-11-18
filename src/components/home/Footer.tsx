@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowIcon, Container, Logo, PlaceholderNote } from "@/components/ui/Primitives";
 import { LanguageSelector } from "@/components/ui/LanguageSelector";
+import { useI18n } from "@/components/ui/I18nProvider";
 import { brand, contact, families, routes, socials } from "@/content/site";
 
 const columns = [
@@ -34,6 +37,7 @@ const legal = [
 ] as const;
 
 export function Footer() {
+  const { t } = useI18n();
   return (
     <footer className="border-t-2 border-accent bg-graphite pt-16 lg:pt-20">
       <Container>
@@ -81,7 +85,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-6 border-t border-white/10 py-8 text-xs text-steel md:flex-row md:items-center md:justify-between">
-          <p>© {brand.name}. All rights reserved.</p>
+          <p>© 2026 {brand.name}. {t.footer.rights}</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legal.map(([label, href]) => (
               <li key={label}><Link href={href} className="transition-colors hover:text-bone">{label}</Link></li>
@@ -90,7 +94,7 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <LanguageSelector up />
             <a href="#main" className="group inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-bone/80 transition-colors hover:text-accent">
-              Top
+              {t.footer.top}
               <span className="grid size-9 place-items-center rounded-full border border-white/30 transition-all duration-500 group-hover:-translate-y-1 group-hover:border-accent">
                 <ArrowIcon className="-rotate-90" />
               </span>

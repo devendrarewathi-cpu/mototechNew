@@ -2,11 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import { languages } from "@/content/site";
+import type { Locale } from "@/content/i18n";
+import { setLocale, useI18n } from "@/components/ui/I18nProvider";
 
 export function LanguageSelector({ align = "right", up = false }: { align?: "left" | "right"; up?: boolean }) {
   const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState(languages[0]);
+  const { locale } = useI18n();
+  const current = languages.find((l) => l.locale === locale) ?? languages[0];
   const root = useRef<HTMLDivElement>(null);
+
+  const choose = (next: Locale) => {
+    setOpen(false);
+    setLocale(next);
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -53,7 +61,7 @@ export function LanguageSelector({ align = "right", up = false }: { align?: "lef
             <button
               type="button"
               tabIndex={open ? 0 : -1}
-              onClick={() => { setCurrent(l); setOpen(false); }}
+              onClick={() => choose(l.locale)}
               className={`flex w-full items-center justify-between gap-6 px-4 py-2 text-left text-sm transition-colors hover:bg-white/8 ${l.code === current.code ? "text-accent" : "text-bone"}`}
             >
               {l.label}<span className="font-mono text-[11px] text-steel">{l.code}</span>

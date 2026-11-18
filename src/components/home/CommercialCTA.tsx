@@ -1,13 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { Container, Eyebrow, Media, ArrowIcon } from "@/components/ui/Primitives";
 import { Reveal, RevealLines } from "@/components/ui/Reveal";
 import { images, routes } from "@/content/site";
+import { useI18n } from "@/components/ui/I18nProvider";
+import type { Dict } from "@/content/i18n";
 
-const destinations = [
+const destinations = (t: Dict) => [
   {
-    audience: "Private customer",
-    title: "Shop here",
-    text: "Browse the range and order directly.",
+    audience: t.hero.privateQuestion,
+    title: t.hero.shopCta,
+    text: t.cta.privateText,
     href: routes.shop,
     image: images.wheelBlue.src,
     alt: images.wheelBlue.alt,
@@ -15,9 +19,9 @@ const destinations = [
     accent: true,
   },
   {
-    audience: "Dealer / distributor",
-    title: "Access our B2B portal",
-    text: "Trade pricing, ordering and resources for partners.",
+    audience: t.hero.dealerQuestion,
+    title: t.hero.b2bCta,
+    text: t.cta.dealerText,
     href: routes.b2b,
     image: images.leverOrange.src,
     alt: images.leverOrange.alt,
@@ -27,19 +31,20 @@ const destinations = [
 ];
 
 export function CommercialCTA() {
+  const { t } = useI18n();
   return (
     <section aria-labelledby="cta-title" className="bg-ink py-28 lg:py-44">
       <Container>
-        <Reveal><Eyebrow index="06" className="text-steel">Choose your route</Eyebrow></Reveal>
+        <Reveal><Eyebrow index="06" className="text-steel">{t.cta.eyebrow}</Eyebrow></Reveal>
         <RevealLines
           as="h2"
-          lines={["Two ways in."]}
+          lines={[t.cta.heading]}
           className="mt-10 font-display text-[clamp(3rem,8vw,7.5rem)] font-semibold uppercase leading-[0.9]"
         />
-        <span id="cta-title" className="sr-only">Shop or access the B2B portal</span>
+        <span id="cta-title" className="sr-only">{t.hero.shopCta} / {t.hero.b2bCta}</span>
 
         <div className="mt-14 grid gap-4 lg:mt-20 lg:grid-cols-2 lg:gap-6">
-          {destinations.map((d, i) => (
+          {destinations(t).map((d, i) => (
             <Reveal key={d.title} delay={i * 120}>
               <Link href={d.href} className="group relative isolate flex min-h-[420px] flex-col justify-between overflow-hidden border border-white/15 p-7 sm:p-10 lg:min-h-[560px]">
                 <Media src={d.image} alt={d.alt} fill loading="lazy" sizes="(min-width:1024px) 50vw, 100vw" className={`-z-20 object-cover ${d.position} transition-transform duration-[1600ms] ease-[var(--ease-out)] group-hover:scale-[1.06]`} />
